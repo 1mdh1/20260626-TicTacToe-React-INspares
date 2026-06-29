@@ -2,9 +2,16 @@ import { useState } from "react";
 
 function Square({ value, onSquareClick, isDarkMode }) {
   // Symbole X und O bekommen je nach Modus passende Farben
-  const colorClass = value === "X"
-    ? "text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]"
-    : "text-rose-400 drop-shadow-[0_0_8px_rgba(251,113,133,0.5)]";
+  const colorClass = (() => {
+    switch (value) {
+      case "X":
+        return "text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]";
+      case "O":
+        return "text-rose-400 drop-shadow-[0_0_8px_rgba(251,113,133,0.5)]";
+      default:
+        return isDarkMode ? "text-slate-100" : "text-slate-800";
+    }
+  })();
 
   return (
     <button 
